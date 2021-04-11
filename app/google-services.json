@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "152707276986",
+    "project_id": "feedly-2882d",
+    "storage_bucket": "feedly-2882d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:152707276986:android:86815f57454eb449882283",
+        "android_client_info": {
+          "package_name": "com.icmen.feedly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "152707276986-op92jki74mgu2203r5h9j6urt7semlim.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5AmKQ4TTU3Qi-UDaBXIJS7BXPFVLWREY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "152707276986-op92jki74mgu2203r5h9j6urt7semlim.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

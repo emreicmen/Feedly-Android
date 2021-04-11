@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Feedly</string>
+
+    <string name="login_page_strings_start">-------------------------------------------</string>
+    <string name="social_media">Social Media</string>
+    <string name="descrption">Social media platform for college students</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="login_page">Login Page</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="register">Register</string>
+
+    <string name="login_page_strings_finish">-------------------------------------------</string>
+
+
+    <string name="register_page_strings_start">-------------------------------------------</string>
+
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="email">Email</string>
+
+
+    <string name="register_page_strings_finish">-------------------------------------------</string>
+
+
+</resources>
