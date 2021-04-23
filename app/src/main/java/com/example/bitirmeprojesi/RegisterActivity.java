@@ -16,14 +16,18 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
     private EditText email;
     private EditText password;
+    private EditText name;
+    private EditText surname;
     private EditText repeatPassword;
     private Button registerButton;
+    private Button loginButtonRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,15 +38,25 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void initViews(){
+        name = findViewById(R.id.name);
+        surname = findViewById(R.id.surname);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         repeatPassword = findViewById(R.id.repeatPassword);
         registerButton = findViewById(R.id.registerButton);
+        loginButtonRegister=findViewById(R.id.loginButtonRegister);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 registerUser(email.getText().toString(), password.getText().toString());
+            }
+        });
+
+        loginButtonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToLoginActivity();
             }
         });
     }
@@ -53,12 +67,41 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            FirebaseUser user = auth.getCurrentUser();
-                            startActivity(new Intent(RegisterActivity.this, PostsActivity.class));
+                            updateUser();
                         } else {
                             Toast.makeText(RegisterActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
+
+    private void goToLoginActivity(){
+        Intent ıntent=new Intent(this,LoginActivity.class);
+        startActivity(ıntent);
+    }
+
+    private void updateUser(){
+        String userName = name.getText().toString();
+        String userSurname = surname.getText().toString();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setDisplayName(userName + " " + userSurname)
+                //.setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
+                .build();
+
+        user.updateProfile(profileUpdates)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Intent intent = new Intent(RegisterActivity.this, PostsActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(RegisterActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
 }

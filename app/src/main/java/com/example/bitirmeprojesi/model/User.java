@@ -14,7 +14,7 @@ public class User {
         this.number = number;
     }
 
-    public User(String name, String surName, int number, String image) {
+    public User(String name, String surName, int number) {
         Name = name;
         SurName = surName;
         this.number = number;
@@ -29,7 +29,7 @@ public class User {
 
     }
 
-    public User(String name, String surName, int i1) {
+    public User(String name, String surName) {
         Name = name;
         SurName = surName;
     }

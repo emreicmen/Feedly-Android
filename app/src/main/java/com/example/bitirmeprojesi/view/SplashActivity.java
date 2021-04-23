@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.bitirmeprojesi.LoginActivity;
 import com.example.bitirmeprojesi.R;
 import com.example.bitirmeprojesi.view.posts.PostsActivity;
 import com.google.firebase.auth.FirebaseAuth;
