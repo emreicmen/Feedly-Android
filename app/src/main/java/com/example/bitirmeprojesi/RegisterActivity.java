@@ -14,11 +14,19 @@ import android.widget.Toast;
 
 import com.example.bitirmeprojesi.view.posts.PostsActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+
+import java.util.UUID;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -33,6 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
     private ImageView profileImageView;
 
     private final int REQUEST_CODE_SELECT_PICTURE = 8773;
+    private Uri profileImageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            updateUser();
+                            uploadImageToFirebase();
                         } else {
                             Toast.makeText(RegisterActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                         }
@@ -105,23 +114,55 @@ public class RegisterActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_CODE_SELECT_PICTURE) {
                 // Get the url of the image from data
-                Uri selectedImageUri = intent.getData();
-                if (null != selectedImageUri) {
+                profileImageUri = intent.getData();
+                if (null != profileImageUri) {
                     // update the preview image in the layout
-                    profileImageView.setImageURI(selectedImageUri);
+                    profileImageView.setImageURI(profileImageUri);
                 }
             }
         }
     }
 
-    private void updateUser(){
+    private void uploadImageToFirebase(){
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        String fileName = UUID.randomUUID().toString() + ".jpg";
+        StorageReference profileImageRef = storageRef.child("images/profilePhotos/" + fileName);
+        UploadTask uploadTask = profileImageRef.putFile(profileImageUri);
+        // Register observers to listen for when the download is done or if it fails
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        // Got the download URL for 'users/me/profile.png'
+                        // Pass it to Picasso to download, show in ImageView and caching
+                        updateUser(uri);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle any errors
+                    }
+                });
+            }
+        });
+    }
+
+    private void updateUser(Uri profileImageUri){
         String userName = name.getText().toString();
         String userSurname = surname.getText().toString();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setDisplayName(userName + " " + userSurname)
-                //.setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
+                .setPhotoUri(profileImageUri)
                 .build();
 
         user.updateProfile(profileUpdates)
