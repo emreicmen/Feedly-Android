@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.bitirmeprojesi.view.posts.PostsActivity;
@@ -28,6 +30,9 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText repeatPassword;
     private Button registerButton;
     private Button loginButtonRegister;
+    private ImageView profileImageView;
+
+    private final int REQUEST_CODE_SELECT_PICTURE = 8773;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
         repeatPassword = findViewById(R.id.repeatPassword);
         registerButton = findViewById(R.id.registerButton);
         loginButtonRegister=findViewById(R.id.loginButtonRegister);
+        profileImageView = findViewById(R.id.profileImageView);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +63,13 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 goToLoginActivity();
+            }
+        });
+
+        profileImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chooseProfilePhoto();
             }
         });
     }
@@ -78,6 +91,27 @@ public class RegisterActivity extends AppCompatActivity {
     private void goToLoginActivity(){
         Intent ıntent=new Intent(this,LoginActivity.class);
         startActivity(ıntent);
+    }
+
+    private void chooseProfilePhoto(){
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(i, "Select Picture"), REQUEST_CODE_SELECT_PICTURE);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == REQUEST_CODE_SELECT_PICTURE) {
+                // Get the url of the image from data
+                Uri selectedImageUri = intent.getData();
+                if (null != selectedImageUri) {
+                    // update the preview image in the layout
+                    profileImageView.setImageURI(selectedImageUri);
+                }
+            }
+        }
     }
 
     private void updateUser(){

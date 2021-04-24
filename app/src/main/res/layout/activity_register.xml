@@ -7,18 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
 
-
-    <TextView
-        android:id="@+id/registerPageTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/register_page"
-        android:textStyle="italic"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileImageView"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:src="@drawable/ic_image_profile_svg"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"/>
 
     <EditText
         android:id="@+id/name"
@@ -31,7 +30,7 @@
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/registerPageTextView"
+        app:layout_constraintTop_toBottomOf="@id/profileImageView"
         />
 
     <EditText
