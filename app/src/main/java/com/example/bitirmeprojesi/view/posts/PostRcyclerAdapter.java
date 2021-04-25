@@ -63,8 +63,8 @@ public class PostRcyclerAdapter extends RecyclerView.Adapter<PostRcyclerAdapter.
     @Override
     public void onBindViewHolder(PostRcyclerAdapter.PostViewHolder holder, int position) {
         User user = userList.get(position);
-        holder.numberTextView.setText(String.valueOf(user.getNumber()));
-        holder.fullNameTextView.setText(user.getName());
+        holder.numberTextView.setText(String.valueOf(user.getId()));
+        holder.fullNameTextView.setText(user.getFullName());
 
     }
 

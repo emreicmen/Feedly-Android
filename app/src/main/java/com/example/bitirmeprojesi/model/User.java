@@ -2,51 +2,49 @@ package com.example.bitirmeprojesi.model;
 
 public class User {
 
-    private String Name;
-    private String SurName;
-    private int number;
+    private String id;
+    private String fullName;
+    private String emailAddress;
+    private String profilePhotoUrl;
 
-    public int getNumber() {
-        return number;
+    public User() {}
+
+    public User(String id, String fullName, String emailAddress, String profilePhotoUrl) {
+        this.id = id;
+        this.fullName = fullName;
+        this.emailAddress = emailAddress;
+        this.profilePhotoUrl = profilePhotoUrl;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public String getId() {
+        return id;
     }
 
-    public User(String name, String surName, int number) {
-        Name = name;
-        SurName = surName;
-        this.number = number;
-
+    public void setId(String id) {
+        this.id = id;
     }
 
-
-
-    public User(String name, String surName, String image) {
-        Name = name;
-        SurName = surName;
-
+    public String getFullName() {
+        return fullName;
     }
 
-    public User(String name, String surName) {
-        Name = name;
-        SurName = surName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public String getName() {
-        return Name;
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
-    public String getSurName() {
-        return SurName;
+    public String getProfilePhotoUrl() {
+        return profilePhotoUrl;
     }
 
-    public void setSurName(String surName) {
-        SurName = surName;
+    public void setProfilePhotoUrl(String profilePhotoUrl) {
+        this.profilePhotoUrl = profilePhotoUrl;
     }
 }

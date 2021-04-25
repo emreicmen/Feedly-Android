@@ -47,9 +47,10 @@ public class PostsFragment extends Fragment {
     private void getNames(){
         for (int i = 1; i < 30; i++){
             User student = new User(
-                    "Enes" + i,
-                    "İçmen" + i,
-                    i*10
+                    String.valueOf(i * 10),
+                    "Enes İçmen" + i,
+                    "",
+                    null
 
             );
             userList.add(student);
@@ -68,7 +69,7 @@ public class PostsFragment extends Fragment {
 
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(getContext(), userList.get(position).getName() + " Clicked!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), userList.get(position).getFullName() + " Clicked!", Toast.LENGTH_SHORT).show();
             }
         });
         postRecyclerView.setAdapter(postRcyclerAdapter);
