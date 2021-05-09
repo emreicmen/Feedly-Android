@@ -1,10 +1,13 @@
 package com.example.bitirmeprojesi.bottom_navigation;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.bitirmeprojesi.LoginActivity;
 import com.example.bitirmeprojesi.R;
 import com.example.bitirmeprojesi.RegisterActivity;
 import com.example.bitirmeprojesi.model.User;
@@ -29,11 +33,13 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+
 public class ProfileFragment extends Fragment {
 
-    private ImageView profileImageView;
+    private ImageView profileImageViewİnProfile;
     private TextView profileTextView;
     private User user;
+    private Button LogOutbutton;
 
     private ProfileFragment(){}
 
@@ -45,10 +51,18 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.profile_fragment_layout,container,false);
-        profileImageView = view.findViewById(R.id.profileImageView);
+        profileImageViewİnProfile = view.findViewById(R.id.profileImageViewİnProfile);
         profileTextView = view.findViewById(R.id.profileTextView);
+        Button LogOutbutton=(Button) view.findViewById(R.id.LogOutbutton);
+        LogOutbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToLogOut();
+            }
+        });
         getProfileInfo();
         return view;
+
     }
 
     private void getProfileInfo(){
@@ -65,7 +79,7 @@ public class ProfileFragment extends Fragment {
                                 user = document.toObject(User.class);
                                 profileTextView.setText(user.getFullName() + "\n" + user.getEmailAddress());
                                 Uri profilePhotoUri = Uri.parse(user.getProfilePhotoUrl());
-                                Picasso.get().load(profilePhotoUri).into(profileImageView);
+                                Picasso.get().load(profilePhotoUri).into(profileImageViewİnProfile);
                             }
                         } else {
                             Toast.makeText(getActivity(), "getProfileInfo failed.", Toast.LENGTH_SHORT).show();
@@ -81,6 +95,12 @@ public class ProfileFragment extends Fragment {
         Picasso.get().load(user.getPhotoUrl()).into(profileImageView);
         profileTextView.setText(profileInfo);
         */
+    }
+
+    private void goToLogOut(){
+        Intent logOutIntent=new Intent(getContext(), LoginActivity.class);
+        startActivity(logOutIntent);
+
     }
 
     /*

@@ -16,11 +16,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.bitirmeprojesi.R;
+import com.example.bitirmeprojesi.bottom_navigation.CreatePostFragment;
 import com.example.bitirmeprojesi.bottom_navigation.PostsFragment;
 import com.example.bitirmeprojesi.bottom_navigation.ProfileFragment;
 import com.example.bitirmeprojesi.model.User;
 import com.example.bitirmeprojesi.view.RecyclerItemClickListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -61,6 +63,5 @@ public class PostsActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.bottomNavigationFragmentContainer,fragment);
         fragmentTransaction.commit();
     }
-
 
 }
