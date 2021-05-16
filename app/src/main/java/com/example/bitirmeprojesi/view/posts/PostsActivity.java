@@ -5,26 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import com.example.bitirmeprojesi.R;
-import com.example.bitirmeprojesi.bottom_navigation.CreatePostFragment;
 import com.example.bitirmeprojesi.bottom_navigation.PostsFragment;
 import com.example.bitirmeprojesi.bottom_navigation.ProfileFragment;
-import com.example.bitirmeprojesi.model.User;
-import com.example.bitirmeprojesi.view.RecyclerItemClickListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
 
 public class PostsActivity extends AppCompatActivity {
 

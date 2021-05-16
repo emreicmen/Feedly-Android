@@ -1,54 +1,44 @@
 package com.example.bitirmeprojesi.model;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Post {
 
+    private String id;
     private String text;
     private String photoUrl;
     private String fullName;
     private long dateTime;
     private String userProfilePhotoUrl;
-    private int userId;
+    private String userId;
     private int likeCount;
     private int commentCount;
     private ArrayList<Comment> commentList;
-    private  double Latitude ;
+    private double Latitude ;
     private double longitude;
 
-    public Post(){}
+    public Post(){ }
 
-    public Post(int userId,
-                String text,
-                String photoUrl,
-                String fullName,
-                long dateTime,
-                String userProfilePhotoUrl,
-                int likeCount,
-                int commentCount,
-                ArrayList<Comment> commentList,
-                double latitude,
-                double longitude,
-                int likedUserId) {
-        this.userId = userId;
+    public Post(String text,
+                String photoUrl) {
         this.text = text;
         this.photoUrl = photoUrl;
-        this.fullName = fullName;
-        this.dateTime = dateTime;
-        this.userProfilePhotoUrl = userProfilePhotoUrl;
-        this.likeCount = likeCount;
-        this.commentCount = commentCount;
-        this.commentList = commentList;
-        Latitude = latitude;
-        this.longitude = longitude;
-        this.likedUserId = likedUserId;
     }
 
-    public int getUserId() {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

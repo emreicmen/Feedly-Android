@@ -10,25 +10,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:theme="@style/Theme.BitirmeProjesi"
         android:usesCleartextTraffic="true"
-        android:windowSoftInputMode=""
-
-
-        android:theme="@style/Theme.BitirmeProjesi">
-        <activity android:name=".view.WelcomeActivity">
-
-        </activity>
-        <activity android:name=".RegisterActivity">
-
-        </activity>
-        <activity android:name=".view.posts.PostsActivity">
-
-        </activity>
-        <activity android:name=".LoginActivity" >
-
-        </activity>
+        android:windowSoftInputMode="">
+        <activity android:name=".view.CreatePostActivity"></activity>
+        <activity android:name=".view.WelcomeActivity"></activity>
+        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".view.posts.PostsActivity"></activity>
+        <activity android:name=".LoginActivity"></activity>
         <activity android:name=".view.SplashActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

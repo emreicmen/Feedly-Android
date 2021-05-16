@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bitirmeprojesi.R;
 import com.example.bitirmeprojesi.model.Post;
 import com.example.bitirmeprojesi.view.RecyclerItemClickListener;
+import com.like.LikeButton;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -27,25 +28,34 @@ public class PostRcyclerAdapter extends RecyclerView.Adapter<PostRcyclerAdapter.
 
         ImageView userProfilePhoto;
         TextView fullNameTextView;
-        TextView dateTimeTextView;
         TextView postWriteText;
         ImageView postPhotoImageView;
-
-
-
+        TextView likeCountTextView;
+        LikeButton likeButton;
 
         public PostViewHolder(final View view, RecyclerItemClickListener recyclerItemClickListener) {
             super(view);
             userProfilePhoto = view.findViewById(R.id.userProfilePhoto);
             fullNameTextView = view.findViewById(R.id.fullNameTextView);
-            dateTimeTextView = view.findViewById(R.id.dateTimeTextView);
             postWriteText = view.findViewById(R.id.postWriteText);
             postPhotoImageView = view.findViewById(R.id.postPhotoImageView);
+            likeCountTextView = view.findViewById(R.id.likeCountTextView);
+            likeButton = view.findViewById(R.id.like_button);
+
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (recyclerItemClickListener != null) {
                         recyclerItemClickListener.onItemClick(v, getAdapterPosition());
+                    }
+                }
+            });
+
+            likeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (recyclerItemClickListener != null) {
+                        recyclerItemClickListener.onItemClick(likeButton, getAdapterPosition());
                     }
                 }
             });
@@ -81,8 +91,10 @@ public class PostRcyclerAdapter extends RecyclerView.Adapter<PostRcyclerAdapter.
             holder.postPhotoImageView.setVisibility(View.GONE);
         }
 
+        Picasso.get().load(post.getUserProfilePhotoUrl()).into(holder.userProfilePhoto);
         holder.fullNameTextView.setText(post.getFullName());
         holder.postWriteText.setText(post.getText());
+        holder.likeCountTextView.setText(String.valueOf(post.getLikeCount()));
 
     }
 

@@ -10,9 +10,11 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/userProfilePhoto"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:src="@drawable/ic_image_profile_svg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:civ_border_color="@color/orange"
         app:civ_border_width="2dp"
         />
@@ -21,61 +23,54 @@
         android:id="@+id/fullNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="60dp"
         android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="12dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/userProfilePhoto"
+        app:layout_constraintTop_toTopOf="@id/userProfilePhoto"
+        app:layout_constraintBottom_toBottomOf="@+id/userProfilePhoto"
         tools:text="Enes İçmen" />
 
     <TextView
-        android:id="@+id/dateTimeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/fullNameTextView"
-        android:paddingLeft="20dp"
-        tools:text="09.05.2021"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:paddingLeft="60dp"
         android:id="@+id/postWriteText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/fullNameTextView"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userProfilePhoto"
+        app:layout_constraintStart_toStartOf="@+id/fullNameTextView"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:text="Make humanity a multiplanet species!"/>
 
     <ImageView
         android:id="@+id/postPhotoImageView"
-        android:paddingLeft="20dp"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="16sp"
+        android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/postWriteText"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/fullNameTextView"
         app:layout_constraintEnd_toEndOf="parent"
         android:src="@drawable/ic_cat"/>
 
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="horizontal"
-      app:layout_constraintTop_toBottomOf="@id/postPhotoImageView"
-      app:layout_constraintStart_toStartOf="parent">
+    <com.like.LikeButton
+        app:icon_type="heart"
+        app:icon_size="6dp"
+        android:id="@+id/like_button"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/postPhotoImageView"
+        app:layout_constraintStart_toStartOf="@+id/userProfilePhoto" />
 
-      <com.like.LikeButton
-          app:icon_type="heart"
-          app:icon_size="6dp"
-          android:id="@+id/like_button"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          />
-
-  </LinearLayout>
+    <TextView
+        android:id="@+id/likeCountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        app:layout_constraintTop_toTopOf="@+id/like_button"
+        app:layout_constraintBottom_toBottomOf="@id/like_button"
+        app:layout_constraintStart_toEndOf="@id/like_button"
+        android:layout_marginStart="4dp"
+        tools:text="11"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
