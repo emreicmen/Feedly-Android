@@ -32,6 +32,7 @@ public class PostRcyclerAdapter extends RecyclerView.Adapter<PostRcyclerAdapter.
         ImageView postPhotoImageView;
         TextView likeCountTextView;
         LikeButton likeButton;
+        TextView commentCountTextView;
 
         public PostViewHolder(final View view, RecyclerItemClickListener recyclerItemClickListener) {
             super(view);
@@ -41,6 +42,7 @@ public class PostRcyclerAdapter extends RecyclerView.Adapter<PostRcyclerAdapter.
             postPhotoImageView = view.findViewById(R.id.postPhotoImageView);
             likeCountTextView = view.findViewById(R.id.likeCountTextView);
             likeButton = view.findViewById(R.id.like_button);
+            //commentCountTextView = view.findViewById(R.id.commentCountTextView);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -95,6 +97,16 @@ public class PostRcyclerAdapter extends RecyclerView.Adapter<PostRcyclerAdapter.
         holder.fullNameTextView.setText(post.getFullName());
         holder.postWriteText.setText(post.getText());
         holder.likeCountTextView.setText(String.valueOf(post.getLikeCount()));
+        /*
+        if(post.getCommentList()==null){
+            holder.commentCountTextView.setText("0");
+
+        }
+        else{
+            holder.commentCountTextView.setText(String.valueOf(post.getCommentList().size()));
+        }
+
+         */
 
     }
 

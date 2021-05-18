@@ -4,10 +4,11 @@ public class Comment {
     private String text;
     private String fullName;
     private String userProfilePhotoUri;
-    private int userId;
+    private String userId;
     private long dateTime;
 
-    private Comment(){}
+
+    public Comment(){}
 
     public String getText() {
         return text;
@@ -33,11 +34,11 @@ public class Comment {
         this.userProfilePhotoUri = userProfilePhotoUri;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -49,7 +50,7 @@ public class Comment {
         this.dateTime = dateTime;
     }
 
-    public Comment(String text, String fullName, String userProfilePhotoUri, int userId, long dateTime) {
+    public Comment(String text, String fullName, String userProfilePhotoUri, String userId, long dateTime) {
         this.text = text;
         this.fullName = fullName;
         this.userProfilePhotoUri = userProfilePhotoUri;

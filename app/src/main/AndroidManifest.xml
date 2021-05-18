@@ -13,11 +13,13 @@
         android:theme="@style/Theme.BitirmeProjesi"
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="">
-        <activity android:name=".view.CreatePostActivity"></activity>
-        <activity android:name=".view.WelcomeActivity"></activity>
-        <activity android:name=".RegisterActivity"></activity>
-        <activity android:name=".view.posts.PostsActivity"></activity>
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".view.posts.CreateCommentActivity"></activity>
+        <activity android:name=".view.posts.PostDetails" />
+        <activity android:name=".view.CreatePostActivity" />
+        <activity android:name=".view.WelcomeActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".view.posts.PostsActivity" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".view.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

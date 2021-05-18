@@ -76,6 +76,7 @@ public class ProfileFragment extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                user = document.toObject(User.class);
                                 profileTextView.setText("Name And Surname :"+user.getFullName() + "\n"+"Email:" + user.getEmailAddress());
                                 Uri profilePhotoUri = Uri.parse(user.getProfilePhotoUrl());
                                 Picasso.get().load(profilePhotoUri).into(profileImageViewİnProfile);

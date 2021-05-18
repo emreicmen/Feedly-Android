@@ -22,9 +22,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.bitirmeprojesi.R;
 import com.example.bitirmeprojesi.RegisterActivity;
+import com.example.bitirmeprojesi.model.Comment;
 import com.example.bitirmeprojesi.model.Post;
 import com.example.bitirmeprojesi.view.CreatePostActivity;
 import com.example.bitirmeprojesi.view.RecyclerItemClickListener;
+import com.example.bitirmeprojesi.view.posts.PostDetails;
 import com.example.bitirmeprojesi.view.posts.PostRcyclerAdapter;
 import com.example.bitirmeprojesi.view.posts.PostsActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -70,6 +72,7 @@ public class PostsFragment extends Fragment {
             public void onClick(View view) {
                 Intent createPostIntent = new Intent(getContext(), CreatePostActivity.class);
                 startActivity(createPostIntent);
+
             }
         });
 
@@ -105,14 +108,20 @@ public class PostsFragment extends Fragment {
                     case R.id.like_button:
                         likePost(postList.get(position));
                         break;
+
+
+
+
                     default:
+                        Intent ıntent=new Intent(getContext(), PostDetails.class);
+                        ıntent.putExtra("postId",postList.get(position).getId());
+                        startActivity(ıntent);
                         break;
                 }
             }
         });
         postRecyclerView.setAdapter(postRcyclerAdapter);
         postRcyclerAdapter.notifyDataSetChanged();
-
     }
 
     private void getPosts() {
@@ -153,10 +162,20 @@ public class PostsFragment extends Fragment {
         postRcyclerAdapter.notifyDataSetChanged();
     }
 
+    private void commentCountPost(Post post){
+        FirebaseFirestore db=FirebaseFirestore.getInstance();
+        post.setCommentCount(post.getCommentCount());
+        db.collection("posts").document(post.getId()).update("commentCount",post.getCommentCount());
+        postRcyclerAdapter.notifyDataSetChanged();
+    }
+
+
+
     private void dislikePost(Post post){
         if(post.getLikeCount() == 0){
             return;
         }
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         post.setLikeCount(post.getLikeCount() - 1);
         db.collection("posts").document(post.getId()).update("likeCount", post.getLikeCount());
