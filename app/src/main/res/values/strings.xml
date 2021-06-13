@@ -28,6 +28,8 @@
 
     <string name="post">Posts</string>
     <string name="profile">Profile</string>
+    <string name="alert">Warning</string>
+    <string name="ok">OK</string>
 
 
 </resources>

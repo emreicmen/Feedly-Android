@@ -1,7 +1,6 @@
 package com.example.bitirmeprojesi.model;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class Post {
 
@@ -15,8 +14,9 @@ public class Post {
     private int likeCount;
     private int commentCount;
     private ArrayList<Comment> commentList;
-    private double Latitude ;
-    private double longitude;
+    private double lat;
+    private double lng;
+    private String geohash;
 
     public Post(){ }
 
@@ -106,20 +106,20 @@ public class Post {
         this.commentList = commentList;
     }
 
-    public double getLatitude() {
-        return Latitude;
+    public double getLat() {
+        return lat;
     }
 
-    public void setLatitude(double latitude) {
-        Latitude = latitude;
+    public void setLat(double lat) {
+        this.lat = lat;
     }
 
-    public double getLongitude() {
-        return longitude;
+    public double getLng() {
+        return lng;
     }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
+    public void setLng(double lng) {
+        this.lng = lng;
     }
 
     public int getLikedUserId() {
@@ -132,4 +132,11 @@ public class Post {
 
     private int likedUserId;
 
+    public String getGeohash() {
+        return geohash;
+    }
+
+    public void setGeohash(String geohash) {
+        this.geohash = geohash;
+    }
 }
