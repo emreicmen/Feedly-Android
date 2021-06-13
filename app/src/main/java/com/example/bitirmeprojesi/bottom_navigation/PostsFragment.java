@@ -106,11 +106,10 @@ public class PostsFragment extends Fragment {
             public void onItemClick(View view, int position) {
                 switch (view.getId()){
                     case R.id.like_button:
+
                         likePost(postList.get(position));
+                        postRcyclerAdapter.notifyItemChanged(position);
                         break;
-
-
-
 
                     default:
                         Intent ıntent=new Intent(getContext(), PostDetails.class);
@@ -122,6 +121,7 @@ public class PostsFragment extends Fragment {
         });
         postRecyclerView.setAdapter(postRcyclerAdapter);
         postRcyclerAdapter.notifyDataSetChanged();
+
     }
 
     private void getPosts() {
