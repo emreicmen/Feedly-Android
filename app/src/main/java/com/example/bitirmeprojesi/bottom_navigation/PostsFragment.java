@@ -155,6 +155,7 @@ public class PostsFragment extends Fragment {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         final GeoLocation center = new GeoLocation(location.getLatitude(), location.getLongitude());
+
         final double radiusInM = 1000;
 
         List<GeoQueryBounds> bounds = GeoFireUtils.getGeoHashQueryBounds(center, radiusInM);
@@ -173,6 +174,9 @@ public class PostsFragment extends Fragment {
                 .addOnCompleteListener(new OnCompleteListener<List<Task<?>>>() {
                     @Override
                     public void onComplete(@NonNull Task<List<Task<?>>> t) {
+
+                        postList.clear();
+
                         List<DocumentSnapshot> matchingDocs = new ArrayList<>();
 
                         for (Task<QuerySnapshot> task : tasks) {

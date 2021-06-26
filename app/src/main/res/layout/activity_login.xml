@@ -22,18 +22,6 @@
         android:layout_marginTop="40dp"
         />
 
-    <TextView
-        android:id="@+id/descrption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/descrption"
-        android:textStyle="italic"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@id/banner"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
 
     <TextView
         android:id="@+id/loginPageTextView"
@@ -43,7 +31,7 @@
         android:textStyle="italic"
         android:textSize="20sp"
         android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@id/descrption"
+        app:layout_constraintTop_toBottomOf="@id/banner"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />
@@ -59,7 +47,7 @@
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/descrption"
+        app:layout_constraintTop_toBottomOf="@id/banner"
         />
 
     <EditText

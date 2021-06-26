@@ -56,6 +56,7 @@ public class CreatePostActivity extends AppCompatActivity {
     EditText postWriteText;
     Button createButton;
     ImageView postPhotoImageView;
+    Button choseImageButton;
     private FirebaseAuth auth;
     private Uri photoUri;
     private Location location;
@@ -81,7 +82,8 @@ public class CreatePostActivity extends AppCompatActivity {
         userProfilePhoto = findViewById(R.id.userProfilePhoto);
         postWriteText = findViewById(R.id.postWriteText);
         postPhotoImageView = findViewById(R.id.postPhotoImageView);
-        postPhotoImageView.setOnClickListener(new View.OnClickListener() {
+        choseImageButton=findViewById(R.id.choseImageButton);
+        choseImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 choosePostPhoto();
@@ -124,6 +126,7 @@ public class CreatePostActivity extends AppCompatActivity {
                 photoUri = intent.getData();
                 if (null != photoUri) {
                     postPhotoImageView.setImageURI(photoUri);
+                    postPhotoImageView.setVisibility(postPhotoImageView.VISIBLE);
                 }
             }
         }
